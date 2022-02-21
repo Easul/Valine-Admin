@@ -38,18 +38,15 @@ exports.notice = (comment) => {
     let siteName = "";
     let siteUrl = "";
 
-    switch (comment.get("url")) {
-        case process.env.PATH_NAME_1: 
-            siteName = process.env.SITE_NAME_1;
-            siteUrl = process.env.SITE_URL_1;
-            break;
-        case process.env.PATH_NAME_2: 
-            siteName = process.env.SITE_NAME_2;
-            siteUrl = process.env.SITE_URL_2;
-            break;
-        default:
-            siteName = process.env.SITE_NAME_DEFAULT;
-            siteUrl = process.env.SITE_URL_DEFAULT;
+    if (comment.get("url") === process.env.PATH_NAME_1) {
+        siteName = process.env.SITE_NAME_1;
+        siteUrl = process.env.SITE_URL_1;
+    } else if (comment.get("url") === process.env.PATH_NAME_2) {
+        siteName = process.env.SITE_NAME_2;
+        siteUrl = process.env.SITE_URL_2;
+    } else {
+        siteName = process.env.SITE_NAME_DEFAULT;
+        siteUrl = process.env.SITE_URL_DEFAULT;
     }
 
     let emailSubject = '👉 咚！「' + siteName + '」上有新评论了';
@@ -93,18 +90,15 @@ exports.send = (currentComment, parentComment)=> {
     let siteName = "";
     let siteUrl = "";
 
-    switch (currentComment.get("url")) {
-        case process.env.PATH_NAME_1: 
-            siteName = process.env.SITE_NAME_1;
-            siteUrl = process.env.SITE_URL_1;
-            break;
-        case process.env.PATH_NAME_2: 
-            siteName = process.env.SITE_NAME_2;
-            siteUrl = process.env.SITE_URL_2;
-            break;
-        default:
-            siteName = process.env.SITE_NAME_DEFAULT;
-            siteUrl = process.env.SITE_URL_DEFAULT;
+    if (comment.get("url") === process.env.PATH_NAME_1) {
+        siteName = process.env.SITE_NAME_1;
+        siteUrl = process.env.SITE_URL_1;
+    } else if (comment.get("url") === process.env.PATH_NAME_2) {
+        siteName = process.env.SITE_NAME_2;
+        siteUrl = process.env.SITE_URL_2;
+    } else {
+        siteName = process.env.SITE_NAME_DEFAULT;
+        siteUrl = process.env.SITE_URL_DEFAULT;
     }
 
     let emailSubject = '👉 叮咚！「' + siteName + '」上有人@了你';
