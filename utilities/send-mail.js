@@ -40,9 +40,9 @@ exports.notice = (comment) => {
     }
 
 
-    let emailSubject = '👉 咚！「' + process.env.SITE_NANE_DEFAULT + '」上有新评论了';
+    let emailSubject = '👉 咚！「' + process.env.SITE_NAME_DEFAULT + '」上有新评论了';
     let emailContent =  noticeTemplate({
-                            siteName: process.env.SITE_NANE_DEFAULT,
+                            siteName: process.env.SITE_NAME_DEFAULT,
                             siteUrl: process.env.SITE_URL_DEFAULT,
                             name: comment.get('nick'),
                             text: comment.get('comment'),
