@@ -42,15 +42,15 @@ exports.notice = (comment) => {
     if (comment.get("url").startsWith("/" + process.env.SITE_PATH_1)) {
         siteName = process.env.SITE_NAME_1;
         siteURL = process.env.SITE_URL_1;
-        commentURL = process.env.SITE_URL_1 + comment.get("url").replace(process.env.SITE_PATH_1, "#");
+        commentURL = process.env.SITE_URL_1 + comment.get("url").replace(process.env.SITE_PATH_1, "#") + "?id=vcomments";
     } else if(comment.get("url").startsWith("/" + process.env.SITE_PATH_2)) {
         siteName = process.env.SITE_NAME_2;
         siteURL = process.env.SITE_URL_2;
-        commentURL = process.env.SITE_URL_2 + comment.get("url").replace(process.env.SITE_PATH_2, "#");
+        commentURL = process.env.SITE_URL_2 + comment.get("url").replace(process.env.SITE_PATH_2, "#") + "?id=vcomments";
     } else {
         siteName = process.env.SITE_NAME_DEFAULT;
         siteURL = process.env.SITE_URL_DEFAULT;
-        commentURL = process.env.SITE_URL_DEFAULT + comment.get('url');
+        commentURL = process.env.SITE_URL_DEFAULT + comment.get('url') + "#comments";
     }
 
 
