@@ -52,7 +52,7 @@ exports.notice = (comment) => {
         siteUrl = process.env.SITE_URL_DEFAULT;
     }
 
-    console.log("sitename" + sitename + ";siteurl" + siteurl);
+    console.log("sitename" + siteName + ";siteurl" + siteUrl);
 
     let emailSubject = '👉 咚！「' + siteName + '」上有新评论了';
     let emailContent =  noticeTemplate({
@@ -108,7 +108,7 @@ exports.send = (currentComment, parentComment)=> {
         siteUrl = process.env.SITE_URL_DEFAULT;
     }
 
-    console.log("sitename" + sitename + ";siteurl" + siteurl);
+    console.log("sitename" + siteName + ";siteurl" + siteUrl);
 
     let emailSubject = '👉 叮咚！「' + siteName + '」上有人@了你';
     let emailContent = sendTemplate({
