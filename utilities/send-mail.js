@@ -38,10 +38,10 @@ exports.notice = (comment) => {
     let siteName = "";
     let siteUrl = "";
 
-    if (comment.get("url") === process.env.PATH_NAME_1) {
+    if (comment.get("url") === process.env.SITE_PATH_1) {
         siteName = process.env.SITE_NAME_1;
         siteUrl = process.env.SITE_URL_1;
-    } else if (comment.get("url") === process.env.PATH_NAME_2) {
+    } else if (comment.get("url") === process.env.SITE_PATH_2) {
         siteName = process.env.SITE_NAME_2;
         siteUrl = process.env.SITE_URL_2;
     } else {
@@ -90,10 +90,10 @@ exports.send = (currentComment, parentComment)=> {
     let siteName = "";
     let siteUrl = "";
 
-    if (comment.get("url") === process.env.PATH_NAME_1) {
+    if (comment.get("url") === process.env.SITE_PATH_1) {
         siteName = process.env.SITE_NAME_1;
         siteUrl = process.env.SITE_URL_1;
-    } else if (comment.get("url") === process.env.PATH_NAME_2) {
+    } else if (comment.get("url") === process.env.SITE_PATH_2) {
         siteName = process.env.SITE_NAME_2;
         siteUrl = process.env.SITE_URL_2;
     } else {
