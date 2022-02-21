@@ -38,6 +38,9 @@ exports.notice = (comment) => {
     let siteName = "";
     let siteUrl = "";
 
+    console.log("url--" + comment.get("url"));
+    console.log("sitepath" + process.env.SITE_PATH_1);
+
     if (comment.get("url") === process.env.SITE_PATH_1) {
         siteName = process.env.SITE_NAME_1;
         siteUrl = process.env.SITE_URL_1;
@@ -48,6 +51,8 @@ exports.notice = (comment) => {
         siteName = process.env.SITE_NAME_DEFAULT;
         siteUrl = process.env.SITE_URL_DEFAULT;
     }
+
+    console.log("sitename" + sitename + ";siteurl" + siteurl);
 
     let emailSubject = '👉 咚！「' + siteName + '」上有新评论了';
     let emailContent =  noticeTemplate({
@@ -90,6 +95,8 @@ exports.send = (currentComment, parentComment)=> {
     let siteName = "";
     let siteUrl = "";
 
+    console.log("url--" + comment.get("url"));
+    console.log("sitepath" + process.env.SITE_PATH_1);
     if (comment.get("url") === process.env.SITE_PATH_1) {
         siteName = process.env.SITE_NAME_1;
         siteUrl = process.env.SITE_URL_1;
@@ -100,6 +107,8 @@ exports.send = (currentComment, parentComment)=> {
         siteName = process.env.SITE_NAME_DEFAULT;
         siteUrl = process.env.SITE_URL_DEFAULT;
     }
+
+    console.log("sitename" + sitename + ";siteurl" + siteurl);
 
     let emailSubject = '👉 叮咚！「' + siteName + '」上有人@了你';
     let emailContent = sendTemplate({
