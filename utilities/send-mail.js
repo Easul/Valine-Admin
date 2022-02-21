@@ -50,7 +50,7 @@ exports.notice = (comment) => {
     } else {
         siteName = process.env.SITE_NAME;
         siteURL = process.env.SITE_URL;
-        commentURL = process.env.SITE_URL + comment.get('url') + "#comments";
+        commentURL = process.env.SITE_URL + comment.get('url') + "#myComment";
     }
 
 
@@ -107,7 +107,8 @@ exports.send = (currentComment, parentComment)=> {
     } else {
         siteName = process.env.SITE_NAME;
         siteURL = process.env.SITE_URL;
-        commentURL = process.env.SITE_URL + currentComment.get('url') + "#" + currentComment.get('pid')
+        // commentURL = process.env.SITE_URL + currentComment.get('url') + "#" + currentComment.get('pid');
+        commentURL = process.env.SITE_URL + currentComment.get('url') + "#myComment";
     }
  
     let emailSubject = '👉 叮咚！「' + siteName + '」上有人@了你';
