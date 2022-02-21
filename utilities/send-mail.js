@@ -34,33 +34,19 @@ exports.notice = (comment) => {
         return;
     }
 
-    // 根据不同的站点用不同的URL
-    let siteName = "";
-    let siteUrl = "";
-
-    console.log("url--" + comment.get("url"));
-    console.log("sitepath" + process.env.SITE_PATH_1);
-
-    if (comment.get("url") === process.env.SITE_PATH_1) {
-        siteName = process.env.SITE_NAME_1;
-        siteUrl = process.env.SITE_URL_1;
-    } else if (comment.get("url") === process.env.SITE_PATH_2) {
-        siteName = process.env.SITE_NAME_2;
-        siteUrl = process.env.SITE_URL_2;
-    } else {
-        siteName = process.env.SITE_NAME_DEFAULT;
-        siteUrl = process.env.SITE_URL_DEFAULT;
+    // 不需要的站点不进行提醒
+    if (comment.get("url") === process.env.SITE_PATH_1 || comment.get("url") === process.env.SITE_PATH_2) {
+       return;
     }
 
-    console.log("sitename" + siteName + ";siteurl" + siteUrl);
 
-    let emailSubject = '👉 咚！「' + siteName + '」上有新评论了';
+    let emailSubject = '👉 咚！「' + process.env.SITE_NANE_DEFAULT + '」上有新评论了';
     let emailContent =  noticeTemplate({
-                            siteName: siteName,
-                            siteUrl: siteUrl,
+                            siteName: process.env.SITE_NANE_DEFAULT,
+                            siteUrl: process.env.SITE_URL_DEFAULT,
                             name: comment.get('nick'),
                             text: comment.get('comment'),
-                            url: siteUrl + comment.get('url')
+                            url: process.env.SITE_URL_DEFAULT + comment.get('url')
                         });
 
     let mailOptions = {
@@ -91,34 +77,20 @@ exports.send = (currentComment, parentComment)=> {
         return;
     }
 
-    // 根据不同的站点用不同的URL
-    let siteName = "";
-    let siteUrl = "";
-
-    console.log("url--" + comment.get("url"));
-    console.log("sitepath" + process.env.SITE_PATH_1);
-    if (comment.get("url") === process.env.SITE_PATH_1) {
-        siteName = process.env.SITE_NAME_1;
-        siteUrl = process.env.SITE_URL_1;
-    } else if (comment.get("url") === process.env.SITE_PATH_2) {
-        siteName = process.env.SITE_NAME_2;
-        siteUrl = process.env.SITE_URL_2;
-    } else {
-        siteName = process.env.SITE_NAME_DEFAULT;
-        siteUrl = process.env.SITE_URL_DEFAULT;
+    // 不需要的站点不进行提醒
+    if (comment.get("url") === process.env.SITE_PATH_1 || comment.get("url") === process.env.SITE_PATH_2) {
+        return;
     }
-
-    console.log("sitename" + siteName + ";siteurl" + siteUrl);
-
-    let emailSubject = '👉 叮咚！「' + siteName + '」上有人@了你';
+ 
+    let emailSubject = '👉 叮咚！「' + process.env.SITE_NAME_DEFAULT + '」上有人@了你';
     let emailContent = sendTemplate({
-                            siteName: siteName,
-                            siteUrl: siteUrl,
+                            siteName: process.env.SITE_NAME_DEFAULT,
+                            siteUrl: process.env.SITE_URL_DEFAULT,
                             pname: parentComment.get('nick'),
                             ptext: parentComment.get('comment'),
                             name: currentComment.get('nick'),
                             text: currentComment.get('comment'),
-                            url: siteUrl + currentComment.get('url') + "#" + currentComment.get('pid')
+                            url: process.env.SITE_URL_DEFAULT + currentComment.get('url') + "#" + currentComment.get('pid')
                         });
     let mailOptions = {
         from: '"' + process.env.SENDER_NAME + '" <' + process.env.SMTP_USER + '>',
