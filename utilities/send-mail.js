@@ -34,13 +34,31 @@ exports.notice = (comment) => {
         return;
     }
 
-    let emailSubject = '👉 咚！「' + process.env.SITE_NAME + '」上有新评论了';
+    // 根据不同的站点用不同的URL
+    let siteName = "";
+    let siteUrl = "";
+
+    switch (comment.get("url")) {
+        case process.env.PATH_NAME_1: 
+            siteName = process.env.SITE_NAME_1;
+            siteUrl = process.env.SITE_URL_1;
+            break;
+        case process.env.PATH_NAME_2: 
+            siteName = process.env.SITE_NAME_2;
+            siteUrl = process.env.SITE_URL_2;
+            break;
+        default:
+            siteName = process.env.SITE_NAME_DEFAULT;
+            siteUrl = process.env.SITE_URL_DEFAULT;
+    }
+
+    let emailSubject = '👉 咚！「' + siteName + '」上有新评论了';
     let emailContent =  noticeTemplate({
-                            siteName: process.env.SITE_NAME,
-                            siteUrl: process.env.SITE_URL,
+                            siteName: siteName,
+                            siteUrl: siteUrl,
                             name: comment.get('nick'),
                             text: comment.get('comment'),
-                            url: process.env.SITE_URL + comment.get('url')
+                            url: siteUrl + comment.get('url')
                         });
 
     let mailOptions = {
@@ -70,15 +88,34 @@ exports.send = (currentComment, parentComment)=> {
         || parentComment.get('mail') === process.env.SMTP_USER) {
         return;
     }
-    let emailSubject = '👉 叮咚！「' + process.env.SITE_NAME + '」上有人@了你';
+
+    // 根据不同的站点用不同的URL
+    let siteName = "";
+    let siteUrl = "";
+
+    switch (currentComment.get("url")) {
+        case process.env.PATH_NAME_1: 
+            siteName = process.env.SITE_NAME_1;
+            siteUrl = process.env.SITE_URL_1;
+            break;
+        case process.env.PATH_NAME_2: 
+            siteName = process.env.SITE_NAME_2;
+            siteUrl = process.env.SITE_URL_2;
+            break;
+        default:
+            siteName = process.env.SITE_NAME_DEFAULT;
+            siteUrl = process.env.SITE_URL_DEFAULT;
+    }
+
+    let emailSubject = '👉 叮咚！「' + siteName + '」上有人@了你';
     let emailContent = sendTemplate({
-                            siteName: process.env.SITE_NAME,
-                            siteUrl: process.env.SITE_URL,
+                            siteName: siteName,
+                            siteUrl: siteUrl,
                             pname: parentComment.get('nick'),
                             ptext: parentComment.get('comment'),
                             name: currentComment.get('nick'),
                             text: currentComment.get('comment'),
-                            url: process.env.SITE_URL + currentComment.get('url') + "#" + currentComment.get('pid')
+                            url: siteUrl + currentComment.get('url') + "#" + currentComment.get('pid')
                         });
     let mailOptions = {
         from: '"' + process.env.SENDER_NAME + '" <' + process.env.SMTP_USER + '>',
