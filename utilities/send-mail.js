@@ -48,9 +48,9 @@ exports.notice = (comment) => {
         siteURL = process.env.SITE_URL_2;
         commentURL = process.env.SITE_URL_2 + comment.get("url").replace(process.env.SITE_PATH_2, "#") + "?id=vcomments";
     } else {
-        siteName = process.env.SITE_NAME_DEFAULT;
-        siteURL = process.env.SITE_URL_DEFAULT;
-        commentURL = process.env.SITE_URL_DEFAULT + comment.get('url') + "#comments";
+        siteName = process.env.SITE_NAME;
+        siteURL = process.env.SITE_URL;
+        commentURL = process.env.SITE_URL + comment.get('url') + "#comments";
     }
 
 
@@ -105,11 +105,13 @@ exports.send = (currentComment, parentComment)=> {
         siteURL = process.env.SITE_URL_2;
         commentURL = process.env.SITE_URL_2 + comment.get("url").replace(process.env.SITE_PATH_2, "#") + "?id=vcomments";
     } else {
-        siteName = process.env.SITE_NAME_DEFAULT;
-        siteURL = process.env.SITE_URL_DEFAULT;
-        commentURL = process.env.SITE_URL_DEFAULT + currentComment.get('url') + "#" + currentComment.get('pid')
+        siteName = process.env.SITE_NAME;
+        siteURL = process.env.SITE_URL;
+        commentURL = process.env.SITE_URL + currentComment.get('url') + "#" + currentComment.get('pid')
     }
  
+    console.log(siteName + "---" + siteURL + "---" + commentURL + "---");
+    
     let emailSubject = '👉 叮咚！「' + siteName + '」上有人@了你';
     let emailContent = sendTemplate({
                             siteName: siteName,
